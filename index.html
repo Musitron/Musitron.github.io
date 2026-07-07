@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuel Olivares — Guitarra Clásica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2118;
+    --paper:#ece3d0;
+    --paper-dim:#e2d7bf;
+    --wood:#1c1410;
+    --wood-soft:#241b15;
+    --garnet:#8b2635;
+    --garnet-soft:#a8394a;
+    --brass:#b8935f;
+    --brass-dim:#8a6d47;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--wood);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1, h2, h3, .display {
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:0 28px; }
+
+  .staff { position:absolute; inset:0; pointer-events:none; opacity:0.16; }
+  .staff svg { width:100%; height:100%; }
+
+  .hero {
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:64px 0 48px;
+    border-bottom:1px solid rgba(184,147,95,0.25);
+  }
+  .eyebrow {
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:22px;
+    font-weight:500;
+  }
+  .hero h1 {
+    font-size:clamp(2.4rem, 7vw, 3.6rem);
+    line-height:1.06;
+    color:var(--paper);
+    margin-bottom:24px;
+  }
+  .hero h1 em { font-style:italic; color:var(--garnet-soft); }
+  .hero p.sub {
+    font-size:1.08rem;
+    max-width:480px;
+    color:rgba(236,227,208,0.78);
+    margin-bottom:40px;
+  }
+  .string-wrap { position:relative; height:64px; margin:8px 0 40px; }
+  .string-wrap svg { width:100%; height:100%; overflow:visible; }
+  .string-path { fill:none; stroke:var(--brass); stroke-width:1.6; stroke-linecap:round; }
+
+  @keyframes pluck {
+    0%   { d: path("M0,32 L100,32"); }
+    35%  { d: path("M0,32 C 20,4 30,4 50,32 C 70,60 80,60 100,32"); }
+    55%  { d: path("M0,32 C 20,50 30,50 50,32 C 70,14 80,14 100,32"); }
+    75%  { d: path("M0,32 C 20,38 30,38 50,32 C 70,26 80,26 100,32"); }
+    100% { d: path("M0,32 L100,32"); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .string-path { animation: pluck 2.4s cubic-bezier(.36,.07,.19,.97) 0.4s 1 both; }
+  }
+
+  .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 26px;
+    border-radius:2px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.01em;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary { background:var(--garnet); color:var(--paper); }
+  .btn-primary:hover { background:var(--garnet-soft); transform:translateY(-1px); }
+  .btn-primary svg { width:18px; height:18px; flex-shrink:0; }
+  .btn-ghost { border:1px solid rgba(236,227,208,0.35); color:rgba(236,227,208,0.85); }
+  .btn-ghost:hover { border-color:var(--brass); color:var(--brass); }
+
+  .creds { padding:36px 0; border-bottom:1px solid rgba(184,147,95,0.25); }
+  .creds .wrap { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .creds .item { font-size:0.82rem; color:rgba(236,227,208,0.62); line-height:1.45; }
+  .creds .item strong {
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:500;
+    color:var(--brass);
+    margin-bottom:4px;
+  }
+  @media (max-width:560px){ .creds .wrap { grid-template-columns:1fr; gap:22px; } }
+
+  .benefit { padding:80px 0; background:var(--paper); color:var(--ink); position:relative; }
+  .benefit .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--garnet); font-weight:600; margin-bottom:18px;
+  }
+  .benefit h2 { font-size:clamp(1.7rem, 5vw, 2.3rem); line-height:1.18; max-width:520px; margin-bottom:28px; }
+  .benefit p { max-width:480px; color:rgba(43,33,24,0.78); font-size:1.02rem; }
+  .benefit p + p { margin-top:14px; }
+
+  .services { padding:80px 0; background:var(--wood-soft); }
+  .services .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; margin-bottom:14px;
+  }
+  .services h2 { font-size:clamp(1.7rem, 5vw, 2.2rem); color:var(--paper); margin-bottom:48px; max-width:460px; }
+
+  .opus {
+    display:grid; grid-template-columns:auto 1fr; gap:22px 26px;
+    padding:30px 0; border-top:1px solid rgba(184,147,95,0.22);
+  }
+  .opus:last-child { border-bottom:1px solid rgba(184,147,95,0.22); }
+  .opus-num {
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.1rem;
+    color:var(--brass); white-space:nowrap; padding-top:2px;
+  }
+  .opus-body h3 { font-size:1.28rem; color:var(--paper); margin-bottom:8px; font-weight:600; }
+  .opus-body p { color:rgba(236,227,208,0.68); font-size:0.96rem; max-width:420px; }
+  @media (max-width:560px){ .opus { grid-template-columns:1fr; gap:8px; } }
+
+  .about { padding:80px 0; }
+  .about .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; margin-bottom:18px;
+  }
+  .about h2 { font-size:clamp(1.6rem, 4.5vw, 2rem); max-width:500px; margin-bottom:22px; color:var(--paper); }
+  .about p { color:rgba(236,227,208,0.75); max-width:520px; font-size:1rem; }
+  .about p + p { margin-top:14px; }
+
+  .final { padding:90px 0 70px; background:var(--garnet); text-align:center; }
+  .final h2 { font-size:clamp(1.8rem, 6vw, 2.6rem); color:var(--paper); margin-bottom:16px; line-height:1.12; }
+  .final p { color:rgba(236,227,208,0.85); max-width:420px; margin:0 auto 34px; }
+  .final .btn-primary { background:var(--wood); }
+  .final .btn-primary:hover { background:var(--wood-soft); }
+  .final .cta-row { justify-content:center; }
+
+  footer { padding:32px 0; text-align:center; font-size:0.82rem; color:rgba(236,227,208,0.45); }
+  footer a { color:rgba(184,147,95,0.8); }
+  footer a:hover { color:var(--brass); }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="staff" aria-hidden="true">
+    <svg viewBox="0 0 400 500" preserveAspectRatio="none">
+      <line x1="0" y1="120" x2="400" y2="120" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="150" x2="400" y2="150" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="180" x2="400" y2="180" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="210" x2="400" y2="210" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="240" x2="400" y2="240" stroke="#B8935F" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Guitarra clásica · Santiago de Chile</div>
+    <h1>Practica menos horas.<br>Llega <em>mejor</em> preparado.</h1>
+    <p class="sub">Coaching de performance para guitarristas y estudiantes que se preparan para clases, audiciones, exámenes y concursos — enfocado en resultados, no en acumular horas.</p>
+
+    <div class="string-wrap" aria-hidden="true">
+      <svg viewBox="0 0 100 64" preserveAspe
