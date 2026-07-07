@@ -3,92 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel Olivares — Guitarra Clásica</title>
+<title>Manuel Olivares — Guitarra Clásica / Classical Guitar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{ --ink:#2b2118; --paper:#ece3d0; --wood:#1c1410; --wood-soft:#241b15; --garnet:#8b2635; --garnet-soft:#a8394a; --brass:#b8935f; }
+  :root{
+    --ink:#2b2118;
+    --paper:#ece3d0;
+    --paper-dim:#e2d7bf;
+    --wood:#1c1410;
+    --wood-soft:#241b15;
+    --garnet:#8b2635;
+    --garnet-soft:#a8394a;
+    --brass:#b8935f;
+    --brass-dim:#8a6d47;
+  }
+
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:var(--wood); color:var(--paper); font-family:'Inter', sans-serif; padding-top:60px; }
-  .wrap { max-width:800px; margin:0 auto; padding:0 28px; }
-  
-  /* Sistema de Idiomas */
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--wood);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    padding-top: 60px;
+  }
+  h1, h2, h3, .display {
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a { color:inherit; text-decoration:none; }
+  .wrap { max-width:720px; margin:0 auto; padding:0 28px; }
+
+  /* --- SISTEMA DE IDIOMAS SEGURO --- */
   [lang="en"] { display: none !important; }
+  [lang="es"] { display: block !important; }
+  span[lang="en"] { display: none !important; }
+  span[lang="es"] { display: inline !important; }
+
   body.lang-en [lang="es"] { display: none !important; }
   body.lang-en [lang="en"] { display: block !important; }
+  body.lang-en span[lang="es"] { display: none !important; }
+  body.lang-en span[lang="en"] { display: inline !important; }
+  
+  /* --- BARRA DE NAVEGACIÓN --- */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(28, 20, 16, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 147, 95, 0.15);
+    z-index: 1000;
+  }
+  .nav-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brass);
+  }
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .nav-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(236, 227, 208, 0.75);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: var(--brass);
+  }
+  
+  .lang-switch {
+    display: flex;
+    gap: 6px;
+    border-left: 1px solid rgba(184, 147, 95, 0.3);
+    padding-left: 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .lang-btn {
+    cursor: pointer;
+    color: rgba(236, 227, 208, 0.4);
+    transition: color 0.2s;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    color: var(--brass);
+  }
 
-  .hero { padding:80px 0; text-align:center; }
-  .hero h1 { font-family:'Fraunces', serif; font-size:clamp(2.5rem, 8vw, 4rem); margin-bottom:20px; }
+  @media (max-width: 560px) {
+    .nav-container { justify-content: space-between; padding: 0 16px; }
+    .nav-logo { display: none; }
+    .nav-menu { gap: 12px; width: 100%; justify-content: center; }
+    .nav-link { font-size: 0.75rem; }
+    .lang-switch { padding-left: 8px; }
+  }
+
+  .staff { position:absolute; inset:0; pointer-events:none; opacity:0.16; }
+  .staff svg { width:100%; height:100%; }
+
+  .hero {
+    position:relative;
+    min-height:85vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:48px 0;
+    border-bottom:1px solid rgba(184,147,95,0.25);
+  }
+  .eyebrow {
+    font-family:'Inter', sans-serif;
+    font-size:13px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:22px;
+    font-weight:500;
+  }
+  .hero h1 {
+    font-size:clamp(2.2rem, 6.5vw, 3.4rem);
+    line-height:1.1;
+    color:var(--paper);
+    margin-bottom:24px;
+  }
+  .hero h1 em { font-style:italic; color:var(--garnet-soft); }
+  .hero p.sub {
+    font-size:1.08rem;
+    max-width:480px;
+    color:rgba(236,227,208,0.78);
+    margin-bottom:40px;
+  }
+  .string-wrap { position:relative; height:64px; margin:8px 0 40px; }
+  .string-wrap svg { width:100%; height:100%; overflow:visible; }
+  .string-path { fill:none; stroke:var(--brass); stroke-width:1.6; stroke-linecap:round; }
+
+  @keyframes pluck {
+    0%   { d: path("M0,32 L100,32"); }
+    35%  { d: path("M0,32 C 20,4 30,4 50,32 C 70,60 80,60 100,32"); }
+    55%  { d: path("M0,32 C 20,50 30,50 50,32 C 70,14 80,14 100,32"); }
+    75%  { d: path("M0,32 C 20,38 30,38 50,32 C 70,26 80,26 100,32"); }
+    100% { d: path("M0,32 L100,32"); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .string-path { animation: pluck 2.4s cubic-bezier(.36,.07,.19,.97) 0.4s 1 both; }
+  }
+
+  .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 26px;
+    border-radius:2px;
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.01em;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary { background:var(--garnet); color:var(--paper); }
+  .btn-primary:hover { background:var(--garnet-soft); transform:translateY(-1px); }
+  .btn-primary svg { width:18px; height:18px; flex-shrink:0; }
+  .btn-ghost { border:1px solid rgba(236,227,208,0.35); color:rgba(236,227,208,0.85); }
+  .btn-ghost:hover { border-color:var(--brass); color:var(--brass); }
+
+  .creds { padding:36px 0; border-bottom:1px solid rgba(184,147,95,0.25); }
+  .creds .wrap { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .creds .item { font-size:0.82rem; color:rgba(236,227,208,0.62); line-height:1.45; }
+  .creds .item strong {
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:500;
+    color:var(--brass);
+    margin-bottom:4px;
+  }
+  @media (max-width:560px){ .creds .wrap { grid-template-columns:1fr; gap:22px; } }
+
+  .benefit { padding:80px 0; background:var(--paper); color:var(--ink); position:relative; }
+  .benefit .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--garnet); font-weight:600; margin-bottom:18px;
+  }
+  .benefit h2 { font-size:clamp(1.7rem, 5vw, 2.3rem); line-height:1.18; max-width:520px; margin-bottom:28px; }
+  .benefit p { max-width:480px; color:rgba(43,33,24,0.78); font-size:1.02rem; }
+  .benefit p + p { margin-top:14px; }
+
+  /* --- SECCIÓN SERVICIOS SEPARADOS --- */
+  .services { padding:80px 0; background:var(--wood-soft); }
+  .services .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; margin-bottom:14px;
+  }
+  .services h2 { font-size:clamp(1.7rem, 5vw, 2.2rem); color:var(--paper); margin-bottom:48px; max-width:460px; }
   
-  /* División de dos mundos */
-  .dual-offer { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin:60px 0; }
-  .box { border:1px solid rgba(184,147,95,0.2); padding:40px; background:rgba(255,255,255,0.02); }
-  .box h2 { font-family:'Fraunces', serif; color:var(--brass); margin-bottom:20px; }
-  .box ul { list-style:none; margin-bottom:30px; }
-  .box li { margin-bottom:10px; font-size:0.9rem; color:rgba(236,227,208,0.8); }
-  
-  .btn { display:inline-block; padding:12px 24px; background:var(--garnet); color:white; text-decoration:none; font-weight:600; }
-  
-  @media (max-width:600px) { .dual-offer { grid-template-columns:1fr; } }
+  .market-block { margin-bottom:50px; }
+  .market-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--garnet-soft);
+    border-bottom: 1px dashed rgba(184, 147, 95, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+
+  .opus {
+    display:grid; grid-template-columns:auto 1fr; gap:22px 26px;
+    padding:30px 0; border-top:1px solid rgba(184,147,95,0.15);
+  }
+  .opus:last-child { border-bottom:1px solid rgba(184,147,95,0.15); }
+  .opus-num {
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.1rem;
+    color:var(--brass); white-space:nowrap; padding-top:2px;
+  }
+  .opus-body h3 { font-size:1.28rem; color:var(--paper); margin-bottom:8px; font-weight:600; }
+  .opus-body p { color:rgba(236,227,208,0.68); font-size:0.96rem; max-width:420px; }
+  @media (max-width:560px){ .opus { grid-template-columns:1fr; gap:8px; } }
+
+  .about { padding:80px 0; }
+  .about .kicker {
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); font-weight:600; margin-bottom:18px;
+  }
+  .about h2 { font-size:clamp(1.6rem, 4.5vw, 2rem); max-width:500px; margin-bottom:22px; color:var(--paper); }
+  .about p { color:rgba(236,227,208,0.75); max-width:520px; font-size:1rem; }
+  .about p + p { margin-top:14px; }
+
+  .final { padding:90px 0 70px; background:var(--garnet); text-align:center; }
+  .final h2 { font-size:clamp(1.8rem, 6vw, 2.6rem); color:var(--paper); margin-bottom:16px; line-height:1.12; }
+  .final p { color:rgba(236,227,208,0.85); max-width:420px; margin:0 auto 34px; }
+  .final .btn-primary { background:var(--wood); }
+  .final .btn-primary:hover { background:var(--wood-soft); }
+  .final .cta-row { justify-content:center; }
+
+  footer { padding:32px 0; text-align:center; font-size:0.82rem; color:rgba(236,227,208,0.45); }
+  footer a { color:rgba(184,147,95,0.8); }
+  footer a:hover { color:var(--brass); }
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="wrap" lang="es">
-    <h1>Manuel Olivares</h1>
-    <p>Excelencia en Guitarra Clásica: Formación estratégica y presencia corporativa.</p>
+<nav class="main-nav">
+  <div class="nav-container">
+    <div class="nav-logo">M. Olivares</div>
+    <div class="nav-menu">
+      <a href="#inicio" class="nav-link"><span lang="es">Inicio</span><span lang="en">Home</span></a>
+      <a href="#enfoque" class="nav-link"><span lang="es">Enfoque</span><span lang="en">Approach</span></a>
+      <a href="#servicios" class="nav-link"><span lang="es">Servicios</span><span lang="en">Services</span></a>
+      <a href="#biografia" class="nav-link"><span lang="es">Biografía</span><span lang="en">Biography</span></a>
+      
+      <div class="lang-switch">
+        <span id="btn-es" class="lang-btn active" onclick="setLang('es')">ESP</span>
+        <span id="btn-en" class="lang-btn" onclick="setLang('en')">ENG</span>
+      </div>
+    </div>
   </div>
+</nav>
+
+<section id="inicio" class="hero">
+  <div class="staff" aria-hidden="true">
+    <svg viewBox="0 0 400 500" preserveAspectRatio="none">
+      <line x1="0" y1="120" x2="400" y2="120" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="150" x2="400" y2="150" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="180" x2="400" y2="180" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="210" x2="400" y2="210" stroke="#B8935F" stroke-width="1"/>
+      <line x1="0" y1="240" x2="400" y2="240" stroke="#B8935F" stroke-width="1"/>
+    </svg>
+  </div>
+  
+  <div class="wrap" lang="es">
+    <div class="eyebrow">Guitarra clásica · Santiago de Chile</div>
+    <h1>Estrategia escénica.<br>Distinción <em>musical</em> corporativa.</h1>
+    <p class="sub">Consultoría estratégica y optimización de rendimiento para guitarristas avanzados junto a propuestas exclusivas de música tradicional in situ para el sector privado.</p>
+  </div>
+
   <div class="wrap" lang="en">
-    <h1>Manuel Olivares</h1>
-    <p>Classical Guitar Excellence: Strategic Training and Corporate Presence.</p>
+    <div class="eyebrow">Classical Guitar · Santiago, Chile</div>
+    <h1>Performance Strategy.<br>Corporate <em>Musical</em> Distinction.</h1>
+    <p class="sub">Strategic consulting and performance optimization for advanced guitarists alongside exclusive in situ traditional live music designs for the private sector.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="string-wrap" aria-hidden="true">
+      <svg viewBox="0 0 100 64" preserveAspectRatio="none">
+        <path class="string-path" d="M0,32 L100,32"/>
+      </svg>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://wa.me/56987767767?text=Hola%20Manuel%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios%20musicales%20y%20coaching." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.11c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.61-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.38c.26-.29.56-.36.75-.36.19 0 .38 0 .54.01.17.01.4-.07.63.48.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.31-.29.47-.14.16-.3.36-.43.48-.14.14-.29.29-.12.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+        <span lang="es">Consultar disponibilidad</span><span lang="en">Check availability</span>
+      </a>
+      <a class="btn btn-ghost" href="https://instagram.com/malexandero" target="_blank" rel="noopener">@malexandero</a>
+    </div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="dual-offer">
-    <!-- MUNDO 1: ESTUDIANTES -->
-    <div class="box">
-      <h2 lang="es">Para Músicos</h2>
-      <h2 lang="en">For Musicians</h2>
-      <ul lang="es">
-        <li>• Coaching de Performance Escénica.</li>
-        <li>• Auditoría de Rutinas de Estudio.</li>
-        <li>• Optimización para Exámenes y Conciertos.</li>
-      </ul>
-      <ul lang="en">
-        <li>• Stage Performance Coaching.</li>
-        <li>• Practice Routine Auditing.</li>
-        <li>• Optimization for Juries & Concerts.</li>
-      </ul>
-      <a href="#" class="btn" lang="es">Ver Programa</a>
-      <a href="#" class="btn" lang="en">View Program</a>
+<section class="creds">
+  <div class="wrap" lang="es">
+    <div class="item"><strong>32</strong>años dedicados a la guitarra clásica</div>
+    <div class="item"><strong>Master of Music</strong>Appalachian State University (EE.UU.)</div>
+    <div class="item"><strong>Prestigio In Situ</strong>Repertorio tradicional para entornos corporativos</div>
+  </div>
+  <div class="wrap" lang="en">
+    <div class="item"><strong>32</strong>years dedicated to the classical guitar</div>
+    <div class="item"><strong>Master of Music</strong>Appalachian State University (USA)</div>
+    <div class="item"><strong>In Situ Prestige</strong>Traditional repertoire tailored for corporate environments</div>
+  </div>
+</section>
+
+<section id="enfoque" class="benefit">
+  <div class="wrap" lang="es">
+    <div class="kicker">Eficiencia y Excelencia</div>
+    <h2>Un catalizador estratégico para tus objetivos.</h2>
+    <p>Tanto en la música de concierto como en el entorno empresarial de alta dirección, la diferencia entre una ejecución correcta y una memorable radica en la preparación estratégica y la gestión del foco bajo presión.</p>
+    <p>A través de soluciones enfocadas en la optimización del rendimiento para músicos y el diseño de intervenciones artísticas exclusivas para corporaciones, transformamos el rigor del gran repertorio tradicional en un activo de éxito, solidez y distinción.</p>
+  </div>
+  <div class="wrap" lang="en">
+    <div class="kicker">Efficiency & Excellence</div>
+    <h2>A Strategic Catalyst for Your Objectives.</h2>
+    <p>In both concert music and high-level business environments, the difference between a standard execution and a memorable performance lies in strategic preparation and maintaining deep focus under pressure.</p>
+    <p>Through specialized solutions designed to optimize practicing methods for musicians and crafting exclusive artistic interventions for corporations, we translate the mastery of traditional repertoire into an asset for success, confidence, and prestige.</p>
+  </div>
+</section>
+
+<section id="servicios" class="services">
+  <div class="wrap">
+    <div class="kicker"><span lang="es">Servicios</span><span lang="en">Portfolio</span></div>
+    <h2 lang="es">Propuestas de alto rendimiento y valor comercial</h2>
+    <h2 lang="en">High-Performance & Commercial Solutions</h2>
+
+    <!-- BLOQUE 1: PARA MÚSICOS -->
+    <div class="market-block">
+      <div class="market-label"><span lang="es">Área I: Para Músicos y Estudiantes Avanzados</span><span lang="en">Area I: For Advanced Musicians & Students</span></div>
+      
+      <div class="opus">
+        <div class="opus-num">01</div>
+        <div class="opus-body">
+          <h3 lang="es">Entrenamiento de Performance Escénica</h3>
+          <h3 lang="en">Stage Performance Coaching</h3>
+          <p lang="es">Preparación mental, memoria y control del foco para instancias de alta exigencia (exámenes, audiciones o conciertos). Un espacio de fogueo complementario para blindar tu repertorio ante la presión.</p>
+          <p lang="en">Mental preparation, memory security, and focus management for high-stakes settings (juries, auditions, or concerts). A complementary training ground to secure your repertoire under pressure.</p>
+        </div>
+      </div>
+      
+      <div class="opus">
+        <div class="opus-num">02</div>
+        <div class="opus-body">
+          <h3 lang="es">Optimización de Rutina de Estudio</h3>
+          <h3 lang="en">Practice Routine Optimization</h3>
+          <p lang="es">Auditoría de hábitos de ensayo. Diseño de metodologías inteligentes de práctica para asimilar obras complejas reduciendo la fatiga mental y maximizando el rendimiento por hora.</p>
+          <p lang="en">Practice habit auditing. Design of intelligent study methodologies to absorb complex masterworks, reducing cognitive fatigue while maximizing output per hour.</p>
+        </div>
+      </div>
     </div>
 
-    <!-- MUNDO 2: EMPRESAS -->
-    <div class="box">
-      <h2 lang="es">Para Empresas</h2>
-      <h2 lang="en">For Corporations</h2>
-      <ul lang="es">
-        <li>• Música en Vivo In Situ.</li>
-        <li>• Charlas-Concierto Exclusivas.</li>
-        <li>• Curaduría para Ceremonias.</li>
-      </ul>
-      <ul lang="en">
-        <li>• In Situ Live Music.</li>
-        <li>• Exclusive Lecture-Recitals.</li>
-        <li>• Ceremony Curation.</li>
-      </ul>
-      <a href="#" class="btn" lang="es">Solicitar Cotización</a>
-      <a href="#" class="btn" lang="en">Request Quote</a>
+    <!-- BLOQUE 2: PARA EMPRESAS -->
+    <div class="market-block">
+      <div class="market-label"><span lang="es">Área II: Soluciones para Empresas y Corporaciones</span><span lang="en">Area II: Corporate & Executive Solutions</span></div>
+      
+      <div class="opus">
+        <div class="opus-num">03</div>
+        <div class="opus-body">
+          <h3 lang="es">Intervenciones Musicales para Ceremonias Premium</h3>
+          <h3 lang="en">Musical Interventions for Premium Ceremonies</h3>
+          <p lang="es">Interpretación musical de alto nivel con un repertorio tradicional rigurosamente seleccionado. El acompañamiento in situ ideal para actos solemnes, firmas, cenas directivas y recepciones corporativas exclusivas.</p>
+          <p lang="en">High-level musical performance featuring a rigorously selected traditional repertoire. The ideal in situ accompaniment for formal acts, signings, executive dinners, and exclusive corporate receptions.</p>
+        </div>
+      </div>
+
+      <div class="opus">
+        <div class="opus-num">04</div>
+        <div class="opus-body">
+          <h3 lang="es">Charlas-Concierto Corporativas</h3>
+          <h3 lang="en">Corporate Lecture-Recitals</h3>
+          <p lang="es">Formato exclusivo para alta dirección. Breves muestras de guitarra clásica matizadas con reflexiones analíticas sobre disciplina, constancia y foco bajo presión aplicados al éxito estratégico empresarial.</p>
+          <p lang="en">An exclusive format for corporate leadership. Brief classical guitar performances interspersed with analytical insights regarding discipline, consistency, and focus under pressure applied to strategic business success.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="biografia" class="about">
+  <div class="wrap" lang="es">
+    <div class="kicker">Trayectoria</div>
+    <h2>Manuel Olivares</h2>
+    <p>Guitarrista clásico y Magíster en Interpretación Musical por Appalachian State University (EE.UU.). Con más de tres décadas de trayectoria dedicadas al instrumento, mi enfoque profesional integra la interpretación musical de excelencia y el desarrollo de estrategias de optimización del rendimiento.</p>
+    <p>A lo largo de mi carrera, he profundizado en metodologías de eficiencia y estructuración de rutinas de práctica de alta efectividad. Esta experiencia me permite ver el entrenamiento escénico como un proceso estratégico complementario, respetando la labor de las cátedras tradicionales y potenciando los resultados del músico de manera independiente.</p>
+    <p>Actualmente, enfoco mi labor en brindar herramientas prácticas a estudiantes avanzados, así como en diseñar curadurías musicales exclusivas basadas en el gran repertorio tradicional clásico e hispanoamericano para el sector corporativo privado.</p>
+  </div>
+
+  <div class="wrap" lang="en">
+    <div class="kicker">Biography</div>
+    <h2>Manuel Olivares</h2>
+    <p>Classical guitarist holding a Master of Music degree from Appalachian State University (USA). With over three decades dedicated to the instrument, my professional work integrates high-level artistic execution with the development of performance optimization strategies.</p>
+    <p>Throughout my journey, I have explored efficiency methodologies and the building of highly effective study routines. This background allows me to treat stage training as a strategic complementary process, strictly respecting traditional institutional teaching lines while boosting the musician's results independently.</p>
+    <p>Today, I focus my work on providing practical tools to advanced students, as well as designing exclusive musical curations based on the great traditional classical and Hispanic-American repertoire for the private corporate sector.</p>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap" lang="es">
+    <h2>Hablemos de tus objetivos estratégicos</h2>
+    <p>Consúltame sobre metodologías de entrenamiento escénico para músicos o cotiza una intervención musical in situ diseñada a la medida de tu evento corporativo.</p>
+  </div>
+  <div class="wrap" lang="en">
+    <h2>Let's Discuss Your Strategic Goals</h2>
+    <p>Inquire about stage training methodologies for musicians, or request a quote for an in situ musical intervention custom-designed for your corporate event.</p>
+  </div>
+  
+  <div class="wrap">
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://wa.me/56987767767?text=Hola%20Manuel%2C%20quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios%20musicales%20y%20coaching." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.11c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.61-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09.99-2.38c.26-.29.56-.36.75-.36.19 0 .38 0 .54.01.17.01.4-.07.63.48.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.1.19-.15.31-.29.47-.14.16-.3.36-.43.48-.14.14-.29.29-.12.57.17.29.75 1.24 1.61 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+        <span lang="es">Enviar un mensaje</span><span lang="en">Send a message</span>
+      </a>
     </div>
   </div>
-</div>
+</section>
+
+<footer>
+  Santiago, Chile → <span lang="es">El mundo</span><span lang="en">Worldwide</span> · <a href="https://instagram.com/malexandero" target="_blank" rel="noopener">@malexandero</a>
+</footer>
 
 <script>
   function setLang(lang) {
-    if (lang === 'en') document.body.classList.add('lang-en');
-    else document.body.classList.remove('lang-en');
+    if (lang === 'en') {
+      document.body.classList.add('lang-en');
+      document.getElementById('btn-en').classList.add('active');
+      document.getElementById('btn-es').classList.remove('active');
+    } else {
+      document.body.classList.remove('lang-en');
+      document.getElementById('btn-es').classList.add('active');
+      document.getElementById('btn-en').classList.remove('active');
+    }
   }
 </script>
+
 </body>
 </html>
