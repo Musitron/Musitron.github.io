@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuel Olivares — Distinción Musical Corporativa</title>
+<title>Manuel Olivares — Alto Rendimiento en Guitarra Clásica</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#2b2118; --paper:#ece3d0; --paper-dim:#e2d7bf; --wood:#1c1410; --wood-soft:#241b15;
-    --garnet:#8b2635; --garnet-soft:#a8394a; --brass:#b8935f; --brass-dim:#8a6d47;
+    --ink:#ece3d0; --paper:#1c1410; --paper-dim:#241b15; --wood:#ece3d0;
+    --garnet:#b8935f; --garnet-soft:#d4b383; --brass:#b8935f; --brass-dim:#8a6d47;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
@@ -19,89 +19,91 @@
   a { color:inherit; text-decoration:none; }
   .wrap { max-width:720px; margin:0 auto; padding:0 28px; }
   
-  /* --- SISTEMA MULTIIDIOMA CORREGIDO (Seguro contra pantallas en blanco) --- */
-  /* Por defecto, el español es visible y el inglés está oculto */
+  /* --- SISTEMA MULTIIDIOMA ANTIBLOQUEO --- */
   [lang="en"], span[lang="en"] { display: none !important; }
   [lang="es"], span[lang="es"] { display: block !important; }
   span[lang="es"] { display: inline !important; }
 
-  /* Solo si el body tiene la clase 'lang-en', se invierten */
   body.lang-en [lang="es"], body.lang-en span[lang="es"] { display: none !important; }
   body.lang-en [lang="en"], body.lang-en span[lang="en"] { display: block !important; }
   body.lang-en span[lang="en"] { display: inline !important; }
   
-  .main-nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(236, 227, 208, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(139, 38, 53, 0.15); z-index: 1000; }
+  .main-nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(28, 20, 16, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(184, 147, 95, 0.15); z-index: 1000; }
   .nav-container { max-width: 720px; margin: 0 auto; padding: 0 28px; height: 60px; display: flex; justify-content: space-between; align-items: center; }
   .nav-logo { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 600; color: var(--garnet); }
   .nav-menu { display: flex; gap: 20px; align-items: center; }
-  .nav-link { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(43, 33, 24, 0.75); transition: color 0.2s ease; }
+  .nav-link { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(236, 227, 208, 0.75); transition: color 0.2s ease; }
   .nav-link:hover { color: var(--garnet); }
-  .lang-switch { display: flex; gap: 6px; border-left: 1px solid rgba(139, 38, 53, 0.3); padding-left: 14px; font-size: 0.8rem; font-weight: 600; }
-  .lang-btn { cursor: pointer; color: rgba(43, 33, 24, 0.4); transition: color 0.2s; }
+  .lang-switch { display: flex; gap: 6px; border-left: 1px solid rgba(184, 147, 95, 0.3); padding-left: 14px; font-size: 0.8rem; font-weight: 600; }
+  .lang-btn { cursor: pointer; color: rgba(236, 227, 208, 0.4); transition: color 0.2s; }
   .lang-btn.active, .lang-btn:hover { color: var(--garnet); }
   @media (max-width: 560px) { .nav-container { justify-content: space-between; padding: 0 16px; } .nav-logo { display: none; } .nav-menu { gap: 14px; width: 100%; justify-content: center; } .nav-link { font-size: 0.75rem; } .lang-switch { padding-left: 8px; } }
-  .staff { position:absolute; inset:0; pointer-events:none; opacity:0.08; }
-  .staff svg { width:100%; height:100%; }
-  .hero { position:relative; min-height:80vh; display:flex; flex-direction:column; justify-content:center; padding:48px 0; border-bottom:1px solid rgba(139,38,53,0.15); }
+  
+  .hero { position:relative; min-height:80vh; display:flex; flex-direction:column; justify-content:center; padding:48px 0; border-bottom:1px solid rgba(184, 147, 95, 0.15); }
   .eyebrow { font-family:'Inter', sans-serif; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--garnet); margin-bottom:22px; font-weight:600; }
   .hero h1 { font-size:clamp(2.2rem, 6.5vw, 3.4rem); line-height:1.1; color:var(--wood); margin-bottom:24px; }
   .hero h1 em { font-style:italic; color:var(--garnet); }
-  .hero p.sub { font-size:1.08rem; max-width:480px; color:rgba(43,33,24,0.78); margin-bottom:40px; }
+  .hero p.sub { font-size:1.08rem; max-width:480px; color:rgba(236, 227, 208, 0.78); margin-bottom:40px; }
+  
   .string-wrap { position:relative; height:64px; margin:8px 0 40px; }
   .string-wrap svg { width:100%; height:100%; overflow:visible; }
   .string-path { fill:none; stroke:var(--garnet); stroke-width:1.6; stroke-linecap:round; }
   @keyframes pluck { 0% { d: path("M0,32 L100,32"); } 35% { d: path("M0,32 C 20,4 30,4 50,32 C 70,60 80,60 100,32"); } 55% { d: path("M0,32 C 20,50 30,50 50,32 C 70,14 80,14 100,32"); } 75% { d: path("M0,32 C 20,38 30,38 50,32 C 70,26 80,26 100,32"); } 100% { d: path("M0,32 L100,32"); } }
   @media (prefers-reduced-motion: no-preference) { .string-path { animation: pluck 2.4s cubic-bezier(.36,.07,.19,.97) 0.4s 1 both; } }
+  
   .cta-row { display:flex; gap:14px; flex-wrap:wrap; }
   .btn { display:inline-flex; align-items:center; gap:10px; padding:15px 26px; border-radius:2px; font-family:'Inter', sans-serif; font-weight:600; font-size:0.95rem; letter-spacing:0.01em; transition:transform 0.15s ease, background 0.15s ease; }
   .btn-primary { background:var(--garnet); color:var(--paper); }
   .btn-primary:hover { background:var(--garnet-soft); transform:translateY(-1px); }
   .btn-primary svg { width:18px; height:18px; flex-shrink:0; }
-  .btn-ghost { border:1px solid rgba(43,33,24,0.25); color:rgba(43,33,24,0.85); }
+  .btn-ghost { border:1px solid rgba(236, 227, 208, 0.25); color:rgba(236, 227, 208, 0.85); }
   .btn-ghost:hover { border-color:var(--garnet); color:var(--garnet); }
-  .creds { padding:36px 0; border-bottom:1px solid rgba(139,38,53,0.15); background:var(--paper-dim); }
+  
+  .creds { padding:36px 0; border-bottom:1px solid rgba(184, 147, 95, 0.15); background:var(--paper-dim); }
   .creds .wrap { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .creds .item { font-size:0.82rem; color:rgba(43,33,24,0.7); line-height:1.45; }
+  .creds .item { font-size:0.82rem; color:rgba(236, 227, 208, 0.7); line-height:1.45; }
   .creds .item strong { display:block; font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600; color:var(--garnet); margin-bottom:4px; }
   @media (max-width:560px){ .creds .wrap { grid-template-columns:1fr; gap:22px; } }
+  
   .benefit { padding:80px 0; position:relative; }
   .benefit .kicker { font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--garnet); font-weight:600; margin-bottom:18px; }
   .benefit h2 { font-size:clamp(1.7rem, 5vw, 2.3rem); line-height:1.18; max-width:520px; margin-bottom:28px; color:var(--wood); }
-  .benefit p { max-width:480px; color:rgba(43,33,24,0.78); font-size:1.02rem; }
+  .benefit p { max-width:480px; color:rgba(236, 227, 208, 0.78); font-size:1.02rem; }
   .benefit p + p { margin-top:14px; }
+  
   .services-corporate { padding:80px 0; background:var(--paper-dim); }
   .services-corporate h2 { font-size:clamp(1.6rem, 5vw, 2.2rem); color:var(--wood); margin-bottom:38px; }
-  .market-label-light { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--garnet); border-bottom: 1px solid rgba(139, 38, 53, 0.25); padding-bottom: 10px; margin-bottom: 24px; }
-  .opus-light { display:grid; grid-template-columns:auto 1fr; gap:22px 26px; padding:30px 0; border-top:1px solid rgba(139, 38, 53, 0.15); }
-  .opus-light:last-child { border-bottom:1px solid rgba(139, 38, 53, 0.15); }
+  .market-label-light { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--garnet); border-bottom: 1px solid rgba(184, 147, 95, 0.25); padding-bottom: 10px; margin-bottom: 24px; }
+  
+  .opus-light { display:grid; grid-template-columns:auto 1fr; gap:22px 26px; padding:30px 0; border-top:1px solid rgba(184, 147, 95, 0.15); }
+  .opus-light:last-child { border-bottom:1px solid rgba(184, 147, 95, 0.15); }
   .opus-num-light { font-family:'Fraunces', serif; font-style:italic; font-size:1.1rem; color:var(--garnet); white-space:nowrap; padding-top:2px; }
   .opus-body-light h3 { font-size:1.28rem; color:var(--wood); margin-bottom:8px; font-weight:600; }
-  .opus-body-light p { color:rgba(43,33,24,0.75); font-size:0.96rem; max-width:420px; }
+  .opus-body-light p { color:rgba(236, 227, 208, 0.75); font-size:0.96rem; max-width:420px; }
   @media (max-width:560px){ .opus-light { grid-template-columns:1fr; gap:8px; } }
+  
   .about { padding:80px 0; }
   .about .kicker { font-size:13px; letter-spacing:0.14em; text-transform:uppercase; color:var(--garnet); font-weight:600; margin-bottom:18px; }
   .about h2 { font-size:clamp(1.6rem, 4.5vw, 2rem); max-width:500px; margin-bottom:22px; color:var(--wood); }
-  .about p { color:rgba(43,33,24,0.75); max-width:520px; font-size:1rem; }
+  .about p { color:rgba(236, 227, 208, 0.75); max-width:520px; font-size:1rem; }
   .about p + p { margin-top:14px; }
-  .final { padding:90px 0 70px; background:var(--garnet); color:var(--paper); text-align:center; }
-  .final h2 { font-size:clamp(1.8rem, 6vw, 2.6rem); color:var(--paper); margin-bottom:16px; line-height:1.12; }
+  
+  .final { padding:90px 0 70px; background:var(--paper-dim); color:var(--ink); text-align:center; border-top:1px solid rgba(184, 147, 95, 0.15); }
+  .final h2 { font-size:clamp(1.8rem, 6vw, 2.6rem); color:var(--wood); margin-bottom:16px; line-height:1.12; }
   .final p { color:rgba(236, 227, 208, 0.85); max-width:420px; margin:0 auto 34px; }
-  .final .btn-primary { background:var(--wood); color:var(--paper); }
-  .final .btn-primary:hover { background:var(--wood-soft); }
   .final .cta-row { justify-content:center; }
-  footer { padding:32px 0; text-align:center; font-size:0.82rem; color:rgba(43,33,24,0.5); }
-  footer a { color:var(--garnet); font-weight:500; }
-  footer a:hover { color:var(--garnet-soft); }
+  
+  footer { padding:32px 0; text-align:center; font-size:0.82rem; color:rgba(236, 227, 208, 0.5); border-top:1px solid rgba(184, 147, 95, 0.15); }
 </style>
 </head>
 <body>
 
 <nav class="main-nav">
   <div class="nav-container">
-    <div class="nav-logo">Manuel Olivares</div>
+    <div class="nav-logo">M. Olivares</div>
     <div class="nav-menu">
-      <a href="#propuesta" class="nav-link"><span lang="es">Propuesta</span><span lang="en">Proposal</span></a>
-      <a href="#servicios" class="nav-link"><span lang="es">Servicios</span><span lang="en">Services</span></a>
+      <a href="#metodo" class="nav-link"><span lang="es">Método</span><span lang="en">Method</span></a>
+      <a href="#entrenamiento" class="nav-link"><span lang="es">Programas</span><span lang="en">Programs</span></a>
       <a href="#trayectoria" class="nav-link"><span lang="es">Trayectoria</span><span lang="en">Bio</span></a>
       <div class="lang-switch">
         <span class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</span>
@@ -113,14 +115,14 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow"><span lang="es">Guitarra Clásica Solista</span><span lang="en">Classical Guitar Soloist</span></div>
+    <div class="eyebrow"><span lang="es">Entrenamiento de Alto Rendimiento</span><span lang="en">High-Performance Coaching</span></div>
     <h1>
-      <span lang="es">El prestigio de la gran música en sus <em>eventos corporativos</em>.</span>
-      <span lang="en">The prestige of great music for your <em>corporate events</em>.</span>
+      <span lang="es">Domina el escenario. Supera tus <em>exámenes y concursos</em>.</span>
+      <span lang="en">Master the stage. Clear your <em>exams and competitions</em>.</span>
     </h1>
     <p class="sub">
-      <span lang="es">Eleve la experiencia de sus reuniones, seminarios y cenas de negocios mediante un repertorio acústico de nivel internacional.</span>
-      <span lang="en">Elevate the experience of your meetings, seminars, and business dinners through a world-class acoustic repertoire.</span>
+      <span lang="es">Mentoría y optimización técnica para guitarristas clásicos. Estrategias avanzadas de control mental, control del foco y eficiencia en el estudio.</span>
+      <span lang="en">Advanced technical and mental conditioning for classical guitarists. Focus control, stage anxiety management, and ultra-efficient practice design.</span>
     </p>
     
     <div class="string-wrap">
@@ -128,12 +130,11 @@
     </div>
 
     <div class="cta-row">
-      <a href="mailto:malexandero@gmail.com" class="btn btn-primary">
-        <span lang="es">Contactar Coordinación</span><span lang="en">Contact Coordination</span>
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      <a href="https://wa.me/56987767767?text=Hola%20Manuel%2C%20vi%20tu%20perfil%20en%20Instagram%20y%20quiero%20consultar%20por%20las%20sesiones%20de%20rendimiento%20para%20guitarra." class="btn btn-primary" target="_blank" rel="noopener">
+        <span lang="es">Postular a Mentoría</span><span lang="en">Apply for Coaching</span>
       </a>
-      <a href="#servicios" class="btn btn-ghost">
-        <span lang="es">Ver Servicios</span><span lang="en">View Services</span>
+      <a href="#entrenamiento" class="btn btn-ghost">
+        <span lang="es">Ver Líneas de Trabajo</span><span lang="en">View Programs</span>
       </a>
     </div>
   </div>
@@ -143,77 +144,77 @@
   <div class="wrap">
     <div class="item">
       <strong>M.M.</strong>
-      <span lang="es">Magíster en Interpretación Musical, Appalachian State University (EE.UU.).</span>
-      <span lang="en">Master of Music in Performance, Appalachian State University (USA).</span>
+      <span lang="es">Magíster en Interpretación Musical, Appalachian State University (EE.UU.). Rigor académico internacional.</span>
+      <span lang="en">Master of Music, Appalachian State University (USA). International academic rigor.</span>
     </div>
     <div class="item">
-      <strong>15+</strong>
-      <span lang="es">Años de experiencia en conciertos y musicalización de alta distinción.</span>
-      <span lang="en">Years of experience in high-distinction concerts and events.</span>
+      <strong>32</strong>
+      <span lang="es">Años en la guitarra clásica asimilando el miedo escénico y la precisión motriz.</span>
+      <span lang="en">Years processing stage anxiety, muscle memory, and high-pressure execution.</span>
     </div>
     <div class="item">
-      <strong>0%</strong>
-      <span lang="es">Pistas o amplificación artificial. Ejecución 100% acústica y pura.</span>
-      <span lang="en">Backing tracks or artificial amplification. 100% pure acoustic execution.</span>
+      <strong>1-on-1</strong>
+      <span lang="es">Sesiones de enfoque milimétrico. Diagnóstico técnico inmediato y sin rodeos.</span>
+      <span lang="en">Laser-focused private sessions. Immediate, raw, and actionable feedback.</span>
     </div>
   </div>
 </section>
 
-<section id="propuesta" class="benefit">
+<section id="metodo" class="benefit">
   <div class="wrap">
-    <div class="kicker"><span lang="es">La Propuesta de Valor</span><span lang="en">The Value Proposition</span></div>
+    <div class="kicker"><span lang="es">El Enfoque</span><span lang="en">The Strategy</span></div>
     <h2>
-      <span lang="es">Un ambiente donde las decisiones importantes se toman con calma.</span>
-      <span lang="en">An environment where critical decisions are made with composure.</span>
+      <span lang="es">Tocar bien en tu habitación es fácil. El reto es sostenerlo bajo presión.</span>
+      <span lang="en">Practicing alone is easy. Seducing the jury under pressure is the goal.</span>
     </h2>
     <p>
-      <span lang="es">En el entorno empresarial, el ruido distrae. La guitarra clásica ofrece un contrapunto perfecto: una atmósfera de sobriedad y refinamiento que fomenta el diálogo, el enfoque y la consolidación de alianzas estratégicas.</span>
-      <span lang="en">In the corporate environment, noise distracts. The classical guitar offers the perfect counterpoint: an atmosphere of sobriety and refinement that fosters dialogue, focus, and the consolidation of strategic alliances.</span>
+      <span lang="es">La mayoría de las fallas en exámenes de grado, conciertos o concursos no ocurren por falta de talento, sino por un diseño de estudio deficiente y un nulo manejo de la ansiedad psicofísica. Tu mente sabotea tus dedos.</span>
+      <span lang="en">Most failures in jury exams, auditions, or competitions don't happen due to lack of talent. They stem from a fragile practice methodology and an untrained nervous system under pressure.</span>
     </p>
     <p>
-      <span lang="es">Cada intervención está diseñada para integrarse orgánicamente con el protocolo de su institución, respetando los flujos de conversación y los tiempos de su agenda.</span>
-      <span lang="en">Each performance is designed to integrate organically with your institution's protocol, respecting the flow of conversation and your schedule's timing.</span>
+      <span lang="es">Mi propuesta de mentoría no se limita a corregir notas; hackeamos tus hábitos de práctica, analizamos la ergonomía del instrumento y construimos una mentalidad blindada capaz de ejecutar con absoluta presencia ante cualquier jurado.</span>
+      <span lang="en">My coaching dynamic goes beyond mere note-correcting. We dissect your current practice loop, optimize bio-mechanics, and engineer a bulletproof mindset tailored to execute clearly when it matters most.</span>
     </p>
   </div>
 </section>
 
-<section id="servicios" class="services-corporate">
+<section id="entrenamiento" class="services-corporate">
   <div class="wrap">
-    <div class="market-label-light"><span lang="es">Portafolio de Servicios</span><span lang="en">Service Portfolio</span></div>
+    <div class="market-label-light"><span lang="es">Áreas de Optimización</span><span lang="en">Focus Dimensions</span></div>
     <h2>
-      <span lang="es">Soluciones musicales a la medida de su corporación</span>
-      <span lang="en">Tailored musical solutions for your organization</span>
+      <span lang="es">Herramientas críticas para el guitarrista clásico activo</span>
+      <span lang="en">Critical frameworks for the performing guitarist</span>
     </h2>
 
     <div class="opus-light">
-      <div class="opus-num-light">Opus 01</div>
+      <div class="opus-num-light">01</div>
       <div class="opus-body-light">
-        <h3><span lang="es">Cenas y Recepciones Oficiales</span><span lang="en">Official Dinners & Receptions</span></h3>
+        <h3><span lang="es">Despacho de Miedo Escénico y Foco</span><span lang="en">Stage Anxiety & Mental Conditioning</span></h3>
         <p>
-          <span lang="es">Intervenciones acústicas continuas ideales para amenizar el diálogo entre directivos y clientes exclusivos, aportando un fondo sonoro sofisticado y de volumen controlado.</span>
-          <span lang="en">Continuous acoustic performances ideal for enriching dialogue between executives and exclusive clients, providing a sophisticated, volume-controlled background.</span>
+          <span lang="es">Estrategias psicológicas y somáticas basadas en simulación de alta presión. Aprende a canalizar el golpe de adrenalina para que trabaje a favor de tu musicalidad y no en contra de tu control motor fino.</span>
+          <span lang="en">Somatic and psychological tools tailored for high-stakes performance. Learn to leverage the adrenaline rush so it enhances your musicality instead of choking your fine motor control.</span>
         </p>
       </div>
     </div>
 
     <div class="opus-light">
-      <div class="opus-num-light">Opus 02</div>
+      <div class="opus-num-light">02</div>
       <div class="opus-body-light">
-        <h3><span lang="es">Aperturas y Clausuras Académicas</span><span lang="en">Academic Openings & Closings</span></h3>
+        <h3><span lang="es">Mecánica, Solidez y Memorización Eficiente</span><span lang="en">Mechanics & Dynamic Memorization</span></h3>
         <p>
-          <span lang="es">Piezas solemnes seleccionadas para ceremonias de alta investidura, congresos, simposios o inauguraciones institucionales que requieran un marco de estricto rigor cultural.</span>
-          <span lang="en">Solemn pieces selected for high-level ceremonies, congresses, symposia, or institutional inaugurations requiring a framework of strict cultural rigor.</span>
+          <span lang="es">Análisis anatómico de pasajes complejos. Reemplazamos la repetición ciega por esquemas de memoria analítica, auditiva y táctil, asegurando que tu repertorio se mantenga intacto incluso ante distracciones externas.</span>
+          <span lang="en">Biomechanical deconstruction of complex bars. We replace blind repetition with analytical, auditory, and structural memory blueprints to guarantee your piece remains flawless under distraction.</span>
         </p>
       </div>
     </div>
 
     <div class="opus-light">
-      <div class="opus-num-light">Opus 03</div>
+      <div class="opus-num-light">03</div>
       <div class="opus-body-light">
-        <h3><span lang="es">Sesiones de Concierto Privado</span><span lang="en">Private Concert Sessions</span></h3>
+        <h3><span lang="es">Preparación de Exámenes y Concursos</span><span lang="en">Jury & Audition Preparation</span></h3>
         <p>
-          <span lang="es">Formatos de recital enfocado para audiencias selectas o delegaciones internacionales, con una cuidada selección de obras maestras del repertorio universal (Bach, Tárrega, Albéniz).</span>
-          <span lang="en">Focused recital formats for select audiences or international delegations, featuring a curated selection of masterpieces from the universal repertoire (Bach, Tárrega, Albéniz).</span>
+          <span lang="es">Curaduría de tiempos de estudio, dosificación de energía y simulacros críticos. Evaluamos objetivamente los criterios que los jurados internacionales ponderan para asegurar que tu interpretación destaque desde el primer compás.</span>
+          <span lang="en">Strategic staging, pacing design, and blind mock reviews. We dissect what international juries look for, optimizing your layout so your performance scores high from the first chord.</span>
         </p>
       </div>
     </div>
@@ -222,18 +223,11 @@
 
 <section id="trayectoria" class="about">
   <div class="wrap">
-    <div class="kicker"><span lang="es">Sobre el Intérprete</span><span lang="en">About the Performer</span></div>
-    <h2>
-      <span lang="es">Rigor académico y trayectoria internacional al servicio de su firma.</span>
-      <span lang="en">Academic rigor and international experience at your firm's service.</span>
-    </h2>
+    <div class="kicker"><span lang="es">Sobre el Mentor</span><span lang="en">The Background</span></div>
+    <h2>Manuel Olivares</h2>
     <p>
-      <span lang="es">Formado bajo los más altos estándares de la disciplina musical en Chile y Estados Unidos, Manuel Olivares combina la maestría técnica con una profunda comprensión del rol de la música en los espacios de alta representación institucional.</span>
-      <span lang="en">Trained under the highest standards of musical discipline in Chile and the United States, Manuel Olivares combines technical mastery with a deep understanding of music's role in high-level institutional environments.</span>
-    </p>
-    <p>
-      <span lang="es">Su enfoque profesional garantiza puntualidad absoluta, un estricto cumplimiento del protocolo corporativo y una calidad artística que refleja la excelencia de las instituciones que confían en su trabajo.</span>
-      <span lang="en">His professional approach guarantees absolute punctuality, strict compliance with corporate protocol, and an artistic quality that reflects the excellence of the institutions that rely on his work.</span>
+      <span lang="es">Guitarrista clásico y Magíster en Interpretación Musical (Master of Music) por Appalachian State University (EE.UU.). Con más de tres décadas enfrentando escenarios, pasajes intrincados y las dinámicas más exigentes de la academia, mi misión actual es transmitir las herramientas exactas que diferencian a un estudiante frustrado de un músico profesional sólido.</span>
+      <span lang="en">Classical guitarist holding a Master of Music degree from Appalachian State University (USA). With over three decades of stage miles, technical trials, and navigating strict academic standards, my current focus is delivering the exact strategies that bridge the gap between hard work and bulletproof performance.</span>
     </p>
   </div>
 </section>
@@ -241,16 +235,16 @@
 <section class="final">
   <div class="wrap">
     <h2>
-      <span lang="es">Incorpore la excelencia musical en su próxima agenda</span>
-      <span lang="en">Incorporate musical excellence into your next agenda</span>
+      <span lang="es">Deja de ensayar más horas. Empieza a ensayar con estrategia.</span>
+      <span lang="en">Stop wasting hours. Start training with a system.</span>
     </h2>
     <p>
-      <span lang="es">Escríbanos para cotizar y reservar la fecha de su evento institucional con la debida anticipación.</span>
-      <span lang="en">Write to us to request a quote and reserve the date for your institutional event well in advance.</span>
+      <span lang="es">Los cupos para mentorías uno-a-uno son limitados debido al nivel de seguimiento individualizado. Haz clic abajo para coordinar tu sesión de diagnóstico vía WhatsApp.</span>
+      <span lang="en">Private slots are strictly limited to preserve feedback density. Click below to secure your initial diagnostic consultation directly via WhatsApp.</span>
     </p>
     <div class="cta-row">
-      <a href="mailto:malexandero@gmail.com" class="btn btn-primary">
-        <span lang="es">Solicitar Cotización Corporativa</span><span lang="en">Request Corporate Quote</span>
+      <a href="https://wa.me/56987767767?text=Hola%20Manuel%2C%20vi%20tu%20perfil%20en%20Instagram%20y%20quiero%20consultar%20por%20las%20sesiones%20de%20rendimiento%20para%20guitarra." class="btn btn-primary" target="_blank" rel="noopener">
+        <span lang="es">Escribir directamente al WhatsApp</span><span lang="en">Chat via WhatsApp</span>
       </a>
     </div>
   </div>
@@ -258,7 +252,7 @@
 
 <footer>
   <div class="wrap">
-    <p>&copy; 2026 Manuel Olivares. <span lang="es">Todos los derechos reservados.</span><span lang="en">All rights reserved.</span></p>
+    <p>&copy; 2026 Manuel Olivares · @malexandero · Santiago, Chile</p>
   </div>
 </footer>
 
